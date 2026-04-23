@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tugas3.ppab_03_l0124133_muftifarismurtadho"
+    namespace = "com.tugas3_4.ppab_03_04_l0124133_muftifarismurtadho"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.tugas3.ppab_03_l0124133_muftifarismurtadho"
+        applicationId = "com.tugas3_4.ppab_03_04_l0124133_muftifarismurtadho"
         minSdk = 30
         targetSdk = 36
         versionCode = 1
@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.compose.ui:ui-text-google-fonts")
     implementation("androidx.compose.material:material-icons-core")
     implementation("androidx.compose.material:material-icons-extended")
     implementation(libs.androidx.core.ktx)
@@ -50,6 +51,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation("io.coil-kt:coil-compose:2.7.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

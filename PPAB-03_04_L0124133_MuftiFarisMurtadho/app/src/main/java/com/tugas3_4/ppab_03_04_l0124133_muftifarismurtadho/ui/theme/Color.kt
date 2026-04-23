@@ -1,4 +1,4 @@
-package com.tugas3.ppab_03_l0124133_muftifarismurtadho.ui.theme
+package com.tugas3_4.ppab_03_04_l0124133_muftifarismurtadho.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -9,3 +9,6 @@ val Pink80 = Color(0xFFEFB8C8)
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
+
+val PlayGreen = Color(0xFF01875F)
+val PlayOnSurface = Color(0xFF5F6368)

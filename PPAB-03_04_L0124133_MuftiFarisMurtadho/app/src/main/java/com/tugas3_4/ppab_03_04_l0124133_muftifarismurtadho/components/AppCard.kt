@@ -1,4 +1,4 @@
-package com.tugas3.ppab_03_l0124133_muftifarismurtadho.components
+package com.tugas3_4.ppab_03_04_l0124133_muftifarismurtadho.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,9 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tugas3.ppab_03_l0124133_muftifarismurtadho.AppItem
-import com.tugas3.ppab_03_l0124133_muftifarismurtadho.ui.theme.PlayGreen
-import com.tugas3.ppab_03_l0124133_muftifarismurtadho.ui.theme.PlayOnSurfaceVariant
+import coil.compose.AsyncImage
+import com.tugas3_4.ppab_03_04_l0124133_muftifarismurtadho.AppItem
 
 @Composable
 fun AppCard(
@@ -32,8 +31,8 @@ fun AppCard(
         horizontalAlignment = Alignment.Start
     ) {
         // App Icon
-        Image(
-            painter = painterResource(id = app.iconRes),
+        AsyncImage(
+            model = app.iconRes,
             contentDescription = app.name,
             modifier = Modifier
                 .size(100.dp)
@@ -57,7 +56,7 @@ fun AppCard(
         Text(
             text = app.category,
             style = MaterialTheme.typography.bodySmall,
-            color = PlayOnSurfaceVariant,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -72,14 +71,14 @@ fun AppCard(
             Icon(
                 imageVector = Icons.Filled.Star,
                 contentDescription = "Rating",
-                tint = PlayOnSurfaceVariant,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.size(12.dp)
             )
             Spacer(modifier = Modifier.width(2.dp))
             Text(
                 text = app.rating.toString(),
                 style = MaterialTheme.typography.bodySmall,
-                color = PlayOnSurfaceVariant,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontSize = 11.sp
             )
         }
@@ -102,7 +101,7 @@ fun AppListItem(
         Text(
             text = "$index",
             style = MaterialTheme.typography.bodyMedium,
-            color = PlayOnSurfaceVariant,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.width(24.dp),
             fontWeight = FontWeight.Medium
         )
@@ -110,8 +109,8 @@ fun AppListItem(
         Spacer(modifier = Modifier.width(12.dp))
 
         // App Icon
-        Image(
-            painter = painterResource(id = app.iconRes),
+        AsyncImage(
+            model = app.iconRes,
             contentDescription = app.name,
             modifier = Modifier
                 .size(56.dp)
@@ -133,20 +132,20 @@ fun AppListItem(
             Text(
                 text = app.category,
                 style = MaterialTheme.typography.bodySmall,
-                color = PlayOnSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     imageVector = Icons.Filled.Star,
                     contentDescription = null,
-                    tint = PlayOnSurfaceVariant,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(11.dp)
                 )
                 Spacer(modifier = Modifier.width(2.dp))
                 Text(
                     text = app.rating.toString(),
                     style = MaterialTheme.typography.bodySmall,
-                    color = PlayOnSurfaceVariant,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontSize = 11.sp
                 )
             }
@@ -159,7 +158,7 @@ fun AppListItem(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 0.dp),
             modifier = Modifier.height(32.dp),
             border = ButtonDefaults.outlinedButtonBorder,
-            colors = ButtonDefaults.outlinedButtonColors(contentColor = PlayGreen)
+            colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.primary)
         ) {
             Text(
                 text = "Install",

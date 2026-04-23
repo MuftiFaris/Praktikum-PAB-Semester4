@@ -1,4 +1,4 @@
-package com.tugas3.ppab_03_l0124133_muftifarismurtadho.components
+package com.tugas3_4.ppab_03_04_l0124133_muftifarismurtadho.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -7,8 +7,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.tugas3.ppab_03_l0124133_muftifarismurtadho.ui.theme.PlayGreen
-import com.tugas3.ppab_03_l0124133_muftifarismurtadho.ui.theme.PlayOnSurfaceVariant
 
 @Composable
 fun SectionHeader(
@@ -36,7 +34,7 @@ fun SectionHeader(
                 ) {
                     Text(
                         text = "More",
-                        color = PlayGreen,
+                        color = MaterialTheme.colorScheme.primary,
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Medium
                     )
@@ -47,7 +45,7 @@ fun SectionHeader(
             Text(
                 text = subtitle,
                 style = MaterialTheme.typography.bodySmall,
-                color = PlayOnSurfaceVariant,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 4.dp)
             )
         }

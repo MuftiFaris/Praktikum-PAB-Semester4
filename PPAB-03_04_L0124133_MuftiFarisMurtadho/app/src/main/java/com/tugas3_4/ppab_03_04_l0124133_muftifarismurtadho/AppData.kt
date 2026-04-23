@@ -1,8 +1,11 @@
-package com.tugas3.ppab_03_l0124133_muftifarismurtadho
+package com.tugas3_4.ppab_03_04_l0124133_muftifarismurtadho
 
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
+import com.tugas3_4.ppab_03_04_l0124133_muftifarismurtadho.R
 
+@Immutable
 data class AppItem(
     val name: String,
     val category: String,
@@ -15,6 +18,7 @@ data class AppItem(
     val price: String = "Free"
 )
 
+@Immutable
 data class AppSection(
     val title: String,
     val subtitle: String = "",

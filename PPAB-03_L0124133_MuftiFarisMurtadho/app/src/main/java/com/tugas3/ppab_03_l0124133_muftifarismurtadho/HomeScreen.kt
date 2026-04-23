@@ -1,5 +1,6 @@
 package com.tugas3.ppab_03_l0124133_muftifarismurtadho
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -319,20 +321,14 @@ fun FeaturedBanner() {
                 }
 
                 // Right: large icon
-                Box(
+                Image(
+                    painter = painterResource(id = featuredApp.iconRes),
+                    contentDescription = featuredApp.name,
                     modifier = Modifier
                         .size(100.dp)
-                        .clip(RoundedCornerShape(22.dp))
-                        .background(featuredApp.iconColor),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = featuredApp.iconLabel,
-                        color = Color.White,
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.ExtraBold
-                    )
-                }
+                        .clip(RoundedCornerShape(22.dp)),
+                    contentScale = ContentScale.Crop
+                )
             }
         }
     }

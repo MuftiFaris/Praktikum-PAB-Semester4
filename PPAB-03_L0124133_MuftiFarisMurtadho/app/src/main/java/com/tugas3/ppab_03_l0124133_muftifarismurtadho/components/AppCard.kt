@@ -1,5 +1,6 @@
 package com.tugas3.ppab_03_l0124133_muftifarismurtadho.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -28,21 +31,15 @@ fun AppCard(
         modifier = modifier.width(100.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        // App Icon Placeholder
-        Box(
+        // App Icon
+        Image(
+            painter = painterResource(id = app.iconRes),
+            contentDescription = app.name,
             modifier = Modifier
                 .size(100.dp)
-                .clip(RoundedCornerShape(20.dp))
-                .background(app.iconColor),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = app.iconLabel,
-                color = Color.White,
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
+                .clip(RoundedCornerShape(20.dp)),
+            contentScale = ContentScale.Crop
+        )
 
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -113,20 +110,14 @@ fun AppListItem(
         Spacer(modifier = Modifier.width(12.dp))
 
         // App Icon
-        Box(
+        Image(
+            painter = painterResource(id = app.iconRes),
+            contentDescription = app.name,
             modifier = Modifier
                 .size(56.dp)
-                .clip(RoundedCornerShape(14.dp))
-                .background(app.iconColor),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = app.iconLabel,
-                color = Color.White,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
+                .clip(RoundedCornerShape(14.dp)),
+            contentScale = ContentScale.Crop
+        )
 
         Spacer(modifier = Modifier.width(12.dp))
 

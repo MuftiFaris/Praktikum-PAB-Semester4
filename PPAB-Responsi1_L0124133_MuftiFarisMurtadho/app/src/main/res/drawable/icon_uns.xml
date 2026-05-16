@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Simplified UNS logo concept: A circle with a stylized 'U' -->
+    <path
+        android:fillColor="#003366"
+        android:pathData="M50,5A45,45 0,1 1,5 50,45 45,0 0,1 50,5Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,30 L30,60 C30,70 40,80 50,80 C60,80 70,70 70,60 L70,30 L60,30 L60,60 C60,65 55,70 50,70 C45,70 40,65 40,60 L40,30 Z" />
+</vector>

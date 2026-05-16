@@ -1,5 +1,6 @@
 package com.tugas5.ppab_05_l0124133_muftifarismurtadho
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -80,16 +83,12 @@ fun HomeScreen() {
                                     .padding(horizontal = 16.dp, vertical = 10.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                // Logo Placeholder
-                                Box(
-                                    modifier = Modifier
-                                        .size(24.dp)
-                                        .clip(CircleShape)
-                                        .background(Color(0xFF4285F4)),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text("G", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                                }
+                                Icon(
+                                    painter = painterResource(id = R.mipmap.logo),
+                                    contentDescription = "Search",
+                                    tint = Color.Unspecified,
+                                    modifier = Modifier.size(24.dp)
+                                )
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
                                     text = "Search apps & games",
@@ -200,7 +199,7 @@ fun HomeScreen() {
                 FeaturedBanner()
             }
 
-            // ── Dynamic Sections (Lazy Layout Implementation) ───────────
+            // ── Dynamic Sections ────────────────────────────────────────
             appSections.forEachIndexed { sectionIndex, section ->
                 item(key = "header_${section.title}", contentType = "header") {
                     Spacer(modifier = Modifier.height(if (sectionIndex == 0) 8.dp else 16.dp))
@@ -211,50 +210,42 @@ fun HomeScreen() {
                     )
                 }
 
-                // Render horizontal rows using LazyRow nested in LazyColumn
-                item(key = "row_${section.title}_$sectionIndex", contentType = "horizontal_row") {
-                    LazyRow(
-                        contentPadding = PaddingValues(horizontal = 16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
-                        modifier = Modifier.padding(top = 8.dp)
-                    ) {
-                        items(
-                            items = section.apps,
-                            key = { app -> "card_${app.name}_$sectionIndex" },
-                            contentType = { "card_item" }
-                        ) { app ->
-                            AppCard(app = app)
+                // Last section rendered as vertical list, others as horizontal
+                if (sectionIndex == appSections.lastIndex) {
+                    itemsIndexed(
+                        items = section.apps,
+                        key = { _, app -> "list_${app.name}_$sectionIndex" },
+                        contentType = { _, _ -> "list_item" }
+                    ) { index, app ->
+                        AppListItem(
+                            app = app,
+                            index = index + 1,
+                            modifier = Modifier.padding(horizontal = 16.dp)
+                        )
+                        if (index < section.apps.lastIndex) {
+                            HorizontalDivider(
+                                modifier = Modifier.padding(horizontal = 16.dp),
+                                color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f),
+                                thickness = 0.5.dp
+                            )
                         }
                     }
-                }
-            }
-
-            // ── Vertical List Section (More Lazy Layout) ────────────────
-            item(key = "top_charts_header", contentType = "header") {
-                Spacer(modifier = Modifier.height(24.dp))
-                SectionHeader(
-                    title = "Top Charts",
-                    subtitle = "Most popular apps right now",
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                )
-            }
-
-            itemsIndexed(
-                items = popularApps.take(5),
-                key = { _, app -> "list_${app.name}_top" },
-                contentType = { _, _ -> "list_item" }
-            ) { index, app ->
-                AppListItem(
-                    app = app,
-                    index = index + 1,
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                )
-                if (index < 4) {
-                    HorizontalDivider(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.12f),
-                        thickness = 0.5.dp
-                    )
+                } else {
+                    item(key = "row_${section.title}_$sectionIndex", contentType = "horizontal_row") {
+                        LazyRow(
+                            contentPadding = PaddingValues(horizontal = 16.dp),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                            modifier = Modifier.padding(top = 8.dp)
+                        ) {
+                            items(
+                                items = section.apps,
+                                key = { app -> "card_${app.name}_$sectionIndex" },
+                                contentType = { "card_item" }
+                            ) { app ->
+                                AppCard(app = app)
+                            }
+                        }
+                    }
                 }
             }
 
@@ -271,7 +262,7 @@ fun HomeScreen() {
 
 @Composable
 fun FeaturedBanner() {
-    val featuredApp = dummyApps[3] // Spotify
+    val featuredApp = dummyApps[3] // Spotify as featured
 
     Card(
         modifier = Modifier
@@ -281,6 +272,7 @@ fun FeaturedBanner() {
         colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A2E))
     ) {
         Box(modifier = Modifier.fillMaxWidth()) {
+            // Background gradient shimmer blocks
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -288,7 +280,7 @@ fun FeaturedBanner() {
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Left: info
+                // Left: icon + info
                 Column(modifier = Modifier.weight(1f)) {
                     Surface(
                         shape = RoundedCornerShape(16.dp),
@@ -320,7 +312,7 @@ fun FeaturedBanner() {
                         onClick = {},
                         shape = RoundedCornerShape(50),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF01875F),
+                            containerColor = PlayGreen,
                             contentColor = Color.White
                         ),
                         contentPadding = PaddingValues(horizontal = 20.dp, vertical = 6.dp),
@@ -334,16 +326,15 @@ fun FeaturedBanner() {
                     }
                 }
 
-                // Right: icon placeholder
-                Box(
+                // Right: large icon
+                Image(
+                    painter = painterResource(id = featuredApp.iconRes),
+                    contentDescription = featuredApp.name,
                     modifier = Modifier
                         .size(100.dp)
-                        .clip(RoundedCornerShape(22.dp))
-                        .background(featuredApp.iconColor),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(featuredApp.iconLabel, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 24.sp)
-                }
+                        .clip(RoundedCornerShape(22.dp)),
+                    contentScale = ContentScale.Crop
+                )
             }
         }
     }
@@ -394,7 +385,7 @@ fun QuickAccessSection() {
                             text = item.label,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Medium,
-                            color = MaterialTheme.colorScheme.onSurface
+                            color = PlayOnSurface
                         )
                     }
                 }

@@ -15,6 +15,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.layout.ContentScale
+import coil.compose.AsyncImage
 import com.tugas5.ppab_05_l0124133_muftifarismurtadho.AppItem
 
 @Composable
@@ -26,21 +28,15 @@ fun AppCard(
         modifier = modifier.width(100.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        // App Icon Placeholder
-        Box(
+        // App Icon
+        AsyncImage(
+            model = app.iconRes,
+            contentDescription = app.name,
             modifier = Modifier
                 .size(100.dp)
-                .clip(RoundedCornerShape(20.dp))
-                .background(app.iconColor),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = app.iconLabel,
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontSize = 24.sp
-            )
-        }
+                .clip(RoundedCornerShape(20.dp)),
+            contentScale = ContentScale.Crop
+        )
 
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -110,21 +106,15 @@ fun AppListItem(
 
         Spacer(modifier = Modifier.width(12.dp))
 
-        // App Icon Placeholder
-        Box(
+        // App Icon
+        AsyncImage(
+            model = app.iconRes,
+            contentDescription = app.name,
             modifier = Modifier
                 .size(56.dp)
-                .clip(RoundedCornerShape(14.dp))
-                .background(app.iconColor),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = app.iconLabel,
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp
-            )
-        }
+                .clip(RoundedCornerShape(14.dp)),
+            contentScale = ContentScale.Crop
+        )
 
         Spacer(modifier = Modifier.width(12.dp))
 
